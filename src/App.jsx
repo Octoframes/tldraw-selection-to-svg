@@ -33,16 +33,25 @@ export default function App() {
         height: "100vh",
       }}
     >
+      {/* First Column */}
       <div style={{ width: 500, height: 500 }}>
         <Tldraw onMount={handleMount}>
           <SaveButton onSave={setSnapshotData} />
         </Tldraw>
       </div>
-      <div style={{ marginLeft: 20, flex: 1 }}>
-        <textarea style={{ width: "100%", height: 500 }} value={snapshotData} readOnly />
+
+      {/* Second Column */}
+      <div style={{ width: 500, height: 500, marginLeft: 20 }}>
+        <textarea
+          style={{ width: "100%", height: "100%" }}
+          value={snapshotData}
+          readOnly
+        />
       </div>
-      <div style={{ marginLeft: 20, flex: 1 }}>
-        <div style={{ width: "100%", height: 500, overflow: "auto" }}>
+
+      {/* Third Column with Black Border */}
+      <div style={{ width: 500, height: 500, marginLeft: 20, border: '2px solid black' }}>
+        <div style={{ width: "100%", height: "100%", overflow: "auto" }}>
           {snapshotData && (
             <div dangerouslySetInnerHTML={{ __html: snapshotData }} />
           )}
@@ -51,6 +60,7 @@ export default function App() {
     </div>
   );
 }
+
 
 function SaveButton({ onSave }) {
   const editor = useEditor();
@@ -67,13 +77,13 @@ function SaveButton({ onSave }) {
       onClick={async () => {
         const snapshot = await editor.getSvg(editor.selectedShapeIds);
         const stringified = snapshot.outerHTML;
-        console.log("Saved!");
+        // console.log("Export SVG!");
         console.log(stringified);
 
         onSave(stringified);
       }}
     >
-      Save
+      Export SVG
     </button>
   );
 }
