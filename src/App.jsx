@@ -39,7 +39,14 @@ export default function App() {
         </Tldraw>
       </div>
       <div style={{ marginLeft: 20, flex: 1 }}>
-        <textarea style={{ width: "100%", height: 500 }} value={snapshotData} />
+        <textarea style={{ width: "100%", height: 500 }} value={snapshotData} readOnly />
+      </div>
+      <div style={{ marginLeft: 20, flex: 1 }}>
+        <div style={{ width: "100%", height: 500, overflow: "auto" }}>
+          {snapshotData && (
+            <div dangerouslySetInnerHTML={{ __html: snapshotData }} />
+          )}
+        </div>
       </div>
     </div>
   );
