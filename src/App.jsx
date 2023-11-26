@@ -1,4 +1,4 @@
-import { Tldraw, useEditor, createShapeId } from "@tldraw/tldraw";
+import { Tldraw, useEditor, createShapeId, getSvgAsImage } from "@tldraw/tldraw";
 import "@tldraw/tldraw/tldraw.css";
 import { useState } from "react";
 
@@ -100,6 +100,10 @@ function DownloadButton({ data }) {
 
   // Create a Blob from the SVG data
   const svgBlob = new Blob([data], { type: "image/svg+xml;charset=utf-8" });
+
+
+
+
 
   // Generate a URL for the Blob
   const url = URL.createObjectURL(svgBlob);
